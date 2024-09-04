@@ -1,0 +1,14 @@
+prompt-default: None
+prompt-notebook: None
+preset: Midnight Enigma
+truncation_length: 8192
+character: Saito Ine
+instruction_template_str: |-
+  {% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% set loop_messages = messages %}{% for message in loop_messages %}{% set content = '<|start_header_id|>' + message['role'] + '<|end_header_id|>
+
+  '+ message['content'] | trim + '<|eot_id|>' %}{% if loop.index0 == 0 %}{% set content = '<|begin_of_text|>' + content %}{% endif %}{{ content }}{% endfor %}
+default_extensions:
+- openai
+- alltalk_tts
+- whisper_stt
+- gallery
